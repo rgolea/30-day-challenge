@@ -1,0 +1,9 @@
+<div class="keys">
+  <drumkit-keyboard-key
+    *ngFor="let instrument of INSTRUMENTS"
+    [letter]="instrument.letter"
+    [soundURL]="instrument.soundSrc">
+    {{instrument.text}}
+  </drumkit-keyboard-key>
+</div>
+

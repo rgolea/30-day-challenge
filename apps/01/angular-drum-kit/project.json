@@ -1,0 +1,81 @@
+{
+  "name": "01-angular-drum-kit",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/01/angular-drum-kit/src",
+  "prefix": "drumkit",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/01/angular-drum-kit",
+        "index": "apps/01/angular-drum-kit/src/index.html",
+        "main": "apps/01/angular-drum-kit/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/01/angular-drum-kit/tsconfig.app.json",
+        "assets": [
+          "apps/01/angular-drum-kit/src/favicon.ico",
+          "apps/01/angular-drum-kit/src/assets"
+        ],
+        "styles": ["apps/01/angular-drum-kit/src/styles.css"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "01-angular-drum-kit:build:production"
+        },
+        "development": {
+          "browserTarget": "01-angular-drum-kit:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "01-angular-drum-kit:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/01/angular-drum-kit/**/*.ts",
+          "apps/01/angular-drum-kit/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
