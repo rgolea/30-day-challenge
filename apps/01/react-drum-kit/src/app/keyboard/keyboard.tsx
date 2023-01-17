@@ -1,24 +1,55 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState, useRef } from 'react';
 
-const Keyboard = (key: number, letter: string, sound: string) => {
+type KeyboardProps = {
+  letter: string;
+  sound: string;
+};
+
+const Keyboard = ({ letter, sound }: KeyboardProps) => {
   const [playing, setPlaying] = useState(false);
 
-  const play = () => {
+  const keyElRef = useRef<HTMLDivElement>(null);
+
+  const audio = useMemo(() => {
+    return new Audio(sound);
+  }, [sound]);
+
+  const play = useCallback(() => {
+    audio.currentTime = 0;
+    audio.play();
     setPlaying(true);
-    new Audio(sound).play();
-  };
+  }, [audio]);
 
   useEffect(() => {
-    document.addEventListener('keydown', (e) => {
+    console.log('registering keydown event listener');
+    const keydownListener = (e: KeyboardEvent) => {
       if (e.key.toUpperCase() === letter.toUpperCase()) {
         play();
       }
-    });
-  }, []);
+    };
+
+    document.addEventListener('keydown', keydownListener);
+
+    return () => document.removeEventListener('keydown', keydownListener);
+  }, [letter, play]);
+
+  useEffect(() => {
+    if(!keyElRef.current) return;
+    const el = keyElRef.current;
+    const transitionListener = (e: TransitionEvent) => {
+      if(e.propertyName !== 'transform') return;
+      setPlaying(false);
+    };
+
+    el.addEventListener('transitionend', transitionListener);
+
+    return () => el.removeEventListener('transitionend', transitionListener);
+
+  }, [keyElRef]);
 
   return (
-    <div className={`keys ${playing ? 'playing' : ''}`}>
-      <div className="key">{letter}</div>
+    <div ref={keyElRef} className="keys">
+      <div className={`key ${playing ? 'playing': ''}`}>{letter}</div>
     </div>
   );
 };
