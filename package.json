@@ -12,15 +12,15 @@
     "@angular/cli": "~15.1.0",
     "@angular/compiler-cli": "~15.1.0",
     "@angular/language-service": "~15.1.0",
-    "@nrwl/angular": "^15.5.1",
-    "@nrwl/cypress": "15.5.1",
-    "@nrwl/eslint-plugin-nx": "15.5.1",
-    "@nrwl/linter": "15.5.1",
-    "@nrwl/nx-cloud": "latest",
-    "@nrwl/react": "15.5.1",
-    "@nrwl/vite": "15.5.1",
-    "@nrwl/web": "15.5.1",
-    "@nrwl/workspace": "15.5.1",
+    "@nrwl/angular": "15.5.2",
+    "@nrwl/cypress": "15.5.2",
+    "@nrwl/eslint-plugin-nx": "15.5.2",
+    "@nrwl/linter": "15.5.2",
+    "@nrwl/nx-cloud": "15.0.2",
+    "@nrwl/react": "15.5.2",
+    "@nrwl/vite": "15.5.2",
+    "@nrwl/web": "15.5.2",
+    "@nrwl/workspace": "15.5.2",
     "@swc/core": "^1.2.173",
     "@testing-library/react": "13.4.0",
     "@types/node": "18.11.9",
@@ -40,7 +40,7 @@
     "eslint-plugin-react": "7.31.11",
     "eslint-plugin-react-hooks": "4.6.0",
     "jsdom": "~20.0.3",
-    "nx": "15.5.1",
+    "nx": "15.5.2",
     "prettier": "^2.6.2",
     "react-test-renderer": "18.2.0",
     "swc-loader": "0.1.15",
@@ -68,3 +68,4 @@
     "zone.js": "~0.11.4"
   }
 }
+
