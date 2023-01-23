@@ -1,0 +1,81 @@
+{
+  "name": "02-angular-clock",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/02/angular-clock/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/02/angular-clock",
+        "index": "apps/02/angular-clock/src/index.html",
+        "main": "apps/02/angular-clock/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/02/angular-clock/tsconfig.app.json",
+        "assets": [
+          "apps/02/angular-clock/src/favicon.ico",
+          "apps/02/angular-clock/src/assets"
+        ],
+        "styles": ["apps/02/angular-clock/src/styles.css"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "02-angular-clock:build:production"
+        },
+        "development": {
+          "browserTarget": "02-angular-clock:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "02-angular-clock:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/02/angular-clock/**/*.ts",
+          "apps/02/angular-clock/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

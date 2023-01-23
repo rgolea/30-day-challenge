@@ -1,0 +1,6 @@
+<app-clock-container *ngIf="time$ | async as time">
+  <app-clock-digital [date]="time"></app-clock-digital>
+  <app-clock-hand type="HOUR" [time]="time.getHours()"></app-clock-hand>
+  <app-clock-hand type="MINUTES" [time]="time.getMinutes()"></app-clock-hand>
+  <app-clock-hand type="SECONDS" [time]="time.getSeconds()"></app-clock-hand>
+</app-clock-container>
